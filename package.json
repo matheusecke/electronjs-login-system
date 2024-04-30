@@ -20,13 +20,10 @@
     "@electron-forge/plugin-auto-unpack-natives": "^7.4.0",
     "@electron-forge/plugin-fuses": "^7.4.0",
     "@electron/fuses": "^1.8.0",
-    "electron": "30.0.1"
+    "electron": "^30.0.1"
   },
   "keywords": [],
-  "author": {
-    "name": "Matheus Ecke Medeiros",
-    "email": "matheusecke@gmail.com"
-  },
+  "author": "Matheus Ecke Medeiros <matheusecke@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^16.4.5",

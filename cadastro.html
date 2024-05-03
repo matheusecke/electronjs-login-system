@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="cadastro.css">
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <h1 class="title">Cadastro</h1>
+        <form>
+          <div class="field">
+            <label class="label">Usuário</label>
+            <div class="control">
+              <input id="userInput" class="input" type="text" placeholder="Informe seu usuário">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">E-mail</label>
+            <div class="control">
+              <input id="emailInput" class="input" type="email" placeholder="Informe seu e-mail">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Senha</label>
+            <div class="control">
+              <input id="passwordInput" class="input" type="password" placeholder="Informe sua senha">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">CEP</label>
+            <div class="control">
+              <input id="CEPInput" class="input" type="text" placeholder="Informe seu CEP">
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <button id="cadastroButton" class="button is-primary">Cadastrar</button>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <a id="backToLoginLink" href="index.html">Voltar ao Login</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+    <script>
+  
+      document.getElementById('cadastroButton').addEventListener('click', function(event) {
+        event.preventDefault();
+
+        var username = document.getElementById('userInput').value;
+        var email = document.getElementById('emailInput').value;
+        var password = document.getElementById('passwordInput').value;
+        var address = document.getElementById('CEPInput').value;
+        //Armazena os valores de cada campo
+
+        let userData = {
+          username: username,
+          email: email,
+          password: password,
+          address: address
+        };
+        //Armazena todas as informações em um objeto
+
+        console.log(userData);
+
+        //Solicita o endereço http/cadastrar-user que enviara dados ao servidor
+        fetch('http://localhost:3000/cadastrar-user', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userData),
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Erro na requisição');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Usuário cadastrado com sucesso:', data);
+          window.location.href = './menu.html';
+        })
+        .catch((error) => {
+          console.error('Erro:', error);
+          alert('Ocorreu um erro: ' + error.message);
+        });
+      });
+    </script>
+  </body>
+</html>

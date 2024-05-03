@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuários</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            display: flex;
+            justify-content: center; /* Centraliza horizontalmente */
+            align-items: center; /* Centraliza verticalmente */
+            height: 100vh; /* Define a altura da tela */
+        }
+        .content {
+            width: 90%;
+            max-width: 800px; /* Define a largura máxima */
+        }
+        h1 {
+            text-align: center;
+            color: #131518;
+        }
+        table {
+            width: 100%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #5ad9b1;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #ecf0f1;
+        }
+        tr:hover {
+            background-color: #bdc3c7;
+            cursor: pointer;
+        }
+        .button-container {
+            margin-top: 30px;
+            text-align: center; /* Centraliza o botão */
+        }
+        .btn {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #5ad9b1;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            outline: none;
+        }
+        .btn:hover, .btn:focus {
+            background-color: #48af8e;
+            transform: scale(1.02);
+        }
+        .btn:active {
+            transform: scale(0.98);
+        }
+        @media (max-width: 600px) {
+            table {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Usuários Cadastrados</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>CEP</th>
+                </tr>
+            </thead>
+            <tbody id="userTable">
+            </tbody>
+        </table>
+        <div class="button-container">
+            <button class="btn" id="voltar-btn">Voltar</button>
+        </div>
+    </div>
+
+    <script>
+        fetch('http://localhost:3000/getUsers')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('A resposta da rede não foi OK');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const table = document.getElementById('userTable');
+                data.forEach(user => {
+                    const row = `<tr>
+                        <td>${user.username}</td>
+                        <td>${user.email}</td>
+                        <td>${user.address}</td>
+                    </tr>`;
+                    table.innerHTML += row;
+                });
+            })
+            .catch(error => console.error('Erro ao buscar usuários:', error));
+
+        document.getElementById('voltar-btn').addEventListener('click', function() {
+            window.location.href = 'menu.html';
+        });
+    </script>
+</body>
+</html>

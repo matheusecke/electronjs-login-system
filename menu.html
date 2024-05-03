@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      text-align: center;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+    }
+    h2 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .btn {
+      padding: 12px 24px;
+      margin: 10px;
+      border: none;
+      border-radius: 4px;
+      background-color: #5ad9b1;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      outline: none;
+      text-transform: uppercase;
+    }
+    .btn:hover {
+      background-color: #4db896;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Visualizar usuários já cadastrados</h2>
+    <div class="button-container">
+      <button class="btn" id="vizualizar-users-button">Visualizar</button>
+    </div>
+    <div class="button-container">
+      <button class="btn" id="sair-button">Sair</button>
+    </div>
+  </div>
+
+  <script>
+    //Se deseja sair o usuario é redirecionado ao menu de login
+    document.getElementById('sair-button').addEventListener('click', function() {
+      window.location.href = 'index.html';
+    });
+    
+    //Se deseja ver o usuario é redirecionado a tela de vizualização de usuarios
+    document.getElementById('vizualizar-users-button').addEventListener('click', function() {
+      window.location.href = 'users.html';
+    });
+  </script>
+</body>
+</html>

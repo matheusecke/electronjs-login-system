@@ -1,0 +1,41 @@
+/* Estilos personalizados para o formulário de cadastro */
+
+/* Centralizar o conteúdo do formulário */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Estilo para o formulário */
+form {
+  width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+/* Estilo para os campos de entrada */
+.input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* Estilo para o botão de cadastro */
+.button {
+  width: 100%;
+}
+
+/* Estilo para o título do formulário */
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.center-login {
+  display: flex;
+  justify-content: center;
+}

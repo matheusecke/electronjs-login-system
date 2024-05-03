@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <section class="section center-login"> 
+      <div class="container">
+        <h1 class="title">Login</h1>
+        <form id="loginForm">
+          <div class="field">
+            <label class="label">E-mail</label>
+            <div class="control">
+              <input id="emailInput" class="input" type="email" placeholder="Informe seu e-mail">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Senha</label>
+            <div class="control">
+              <input id="passwordInput" class="input" type="password" placeholder="Informe sua senha">
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <button id="loginButton" class="button is-primary">Entrar</button>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+            <p class="center-login">Não tem uma conta? <a href="cadastro.html"> Cadastre-se</a> </p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <script>
+      document.getElementById('loginButton').addEventListener('click', function(event) {
+
+          event.preventDefault();
+          
+          //Armazena os valores digitados nos campos em suas respectivas variaveis
+          var email = document.getElementById('emailInput').value;
+          var password = document.getElementById('passwordInput').value;
+          
+          //Solicita o endereço http/login que enviara dados ao servidor
+          fetch('http://localhost:3000/login', {
+              method: 'POST',
+              headers: {
+              'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ email: email, password: password }),
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.success) {
+              window.location.href = './menu.html';   //Se foi executado corretamente o usuário é redirecionado a uma outra pagina
+              } else {
+              alert('Usuário ou senha incorretos');
+              }
+          })
+        .catch((error) => {
+          console.error('Erro:', error);
+        });
+      });
+  </script>
+  </body>
+</html>
